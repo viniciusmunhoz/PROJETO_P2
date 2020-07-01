@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+      <form method="POST" novalidate>
+        {% csrf_token %}
+          <div class="form-group">
+            {{ form.calcado |as_crispy_field }}
+          </div>
+          <div class="form-group">
+            {{ form.quantidade |as_crispy_field }}
+          </div>
+          <div class="form-group">
+            {{ form.cliente |as_crispy_field }}
+          </div>
+          <div class="form-group">
+            {{ form.funcionario |as_crispy_field }}
+          </div>
+          <div class="form-group">
+            {{ form.datavenda |as_crispy_field }}
+          </div>
+          <div class="form-group">
+            {{ form.loja |as_crispy_field }}
+          </div>
+          <button type="submit" class="btn btn-success">Salvar</button>
+            {% if vendas %}
+                 <a href="{% url 'delete_vendas' vendas.id %}" class="btn btn-danger">Excluir</a>
+            {% endif %}
+          <a class="btn btn-light" href="{% url 'list_vendas' %}">Cancelar</a>
+      </form>
+{% endblock %}
